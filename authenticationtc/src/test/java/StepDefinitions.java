@@ -13,6 +13,12 @@ public class StepDefinitions {
     public void userIsOnTheLoginPage() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
+
+    @And("^there is no authenticated user$")
+    public void thereIsNoAuthenticatedUser() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
     @When("^user enters valid credentials$")
     public void userEntersValidCredentials(DataTable args) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
@@ -102,4 +108,5 @@ public class StepDefinitions {
     public void theIsSystemShouldNotAccept(String arg0) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
+
 }

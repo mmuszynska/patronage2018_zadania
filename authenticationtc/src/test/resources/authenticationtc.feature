@@ -6,6 +6,7 @@ Feature: Authentication to the application
 
   Background:
     Given user is on the login page
+    And there is no authenticated user
 
   Scenario: Successful authentication with valid credentials in both of authentication fields
     Given user is registered
@@ -31,7 +32,6 @@ Feature: Authentication to the application
       | email@domain.com | some_password |
     When user enters the correct login
     And user enters the wrong password or none password
-      | invalid password    |
       | some_wrong_password |
       |                     |
     And clicks the 'Log in' button
@@ -41,11 +41,9 @@ Feature: Authentication to the application
     Given user is registered
       | email@domain.com | some_password |
     When user enters no login
-      | login |
-      |       |
+      |  |
     And user enters no password
-      | password |
-      |          |
+      |  |
     And clicks the 'Log in' button
     Then 'Authentication failed. Login or password are incorrect' message should be displayed
 
