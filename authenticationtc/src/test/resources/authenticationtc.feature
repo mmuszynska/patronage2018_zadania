@@ -6,7 +6,7 @@ Feature: Authentication to the application
 
   Background:
     Given user is on the login page
-    And there is no authenticated user
+    And user is not authenticated
 
   Scenario: Successful authentication with valid credentials in both of authentication fields
     Given user is registered

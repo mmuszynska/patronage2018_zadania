@@ -9,13 +9,14 @@ public class StepDefinitions {
     public void userIsRegistered(DataTable arg0) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
+
     @Given("^user is on the login page$")
     public void userIsOnTheLoginPage() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
 
-    @And("^there is no authenticated user$")
-    public void thereIsNoAuthenticatedUser() throws Throwable {
+    @And("^user is not authenticated$")
+    public void userIsNotAuthenticated() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
 
