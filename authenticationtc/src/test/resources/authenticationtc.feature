@@ -9,43 +9,44 @@ Feature: Authentication to the application
     And user is not authenticated
 
   Scenario: Successful authentication with valid credentials in both of authentication fields
-    Given user is registered
-      | email@domain.com | some_password |
+    Given user with email is registered in the application "example_email@domain.com"
     When user enters valid credentials
-      | firstname.lastname@domain.com | some_other_password |
-      | email@domain.com              | some_password       |
-      | email@subdomain.domain.com    | password            |
-      | firstname+lastname@domain.com | some_password       |
-      | email@123.123.123.123         | 123$_password       |
-      | "email"@domain.com            | passwordXYZ         |
-      | 1234567890@domain.com         | _password?123       |
-      | email@domain-one.com          | %password0.AWSD-key |
-      | _______@domain.com            | password+#1         |
-      | email@domain.name             | xyz_password        |
-      | email@domain.co.jp            | pretty_password     |
-      | firstname-lastname@domain.com | ugly_password       |
+      | loginwith-exactly-60-characters@have60characters.thatissixty | password            |
+      | user-loginwith59characters@have59characters.thatisfiftynine  | example_password    |
+      | firstname.lastname@domain.com                                | some_other_password |
+      | email@domain.com                                             | some_password       |
+      | email@subdomain.domain.com                                   | password            |
+      | firstname+lastname@domain.com                                | some_password       |
+      | email@123.123.123.123                                        | 123$_password       |
+      | "email"@domain.com                                           | passwordXYZ         |
+      | 1234567890@domain.com                                        | _password?123       |
+      | email@domain-one.com                                         | %password0.AWSD-key |
+      | _______@domain.com                                           | password+#1         |
+      | email@domain.name                                            | xyz_password        |
+      | email@domain.co.jp                                           | pretty_password     |
+      | firstname-lastname@domain.com                                | ugly_password       |
+      | a@b.pl                                                       | example_password    |
     And clicks the 'Log In' button
     Then user is redirected to the page with an account details view
 
-  Scenario: Unsuccessful authentication with valid login and invalid password or none password
-    Given user is registered
-      | email@domain.com | some_password |
-    When user enters the correct login
-    And user enters the wrong password or none password
-      | some_wrong_password |
-      |                     |
+  Scenario Outline: Unsuccessful authentication with valid login or none login and invalid password or none password
+    Given user with email is registered in the application "example_email@domain.com"
+    When user enters "<login>"
+    And user enters "<password>"
     And clicks the 'Log in' button
     Then 'Authentication failed. Login or password are incorrect' message should be displayed
+    Examples:
+      | login            | password            |
+      | email@domain.com | some_wrong_password |
+      |                  | empty_login         |
+      | empty@pass.pl    |                     |
 
-  Scenario: Unsuccessful authentication with enter none credentials in both of authentication fields
-    Given user is registered
-      | email@domain.com | some_password |
+  Scenario: Unsuccessful authentication due to submit blank form
+    Given user with email is registered in the application "example_email@domain.com"
     When user enters no login
-      |  |
     And user enters no password
-      |  |
     And clicks the 'Log in' button
-    Then 'Authentication failed. Login or password are incorrect' message should be displayed
+    Then 'Login and password are required' message should be displayed
 
   Scenario: Unsuccessful authentication due to unauthorized entry
     Given user is not registered
@@ -53,10 +54,9 @@ Feature: Authentication to the application
     And user enters any password
     Then 'Authentication failed. Login or password are incorrect' message should be displayed
 
-  Scenario: Unsuccessful authentication with an invalid login (missing @ sign or a fully domain name and other reasons)
-    Given user is registered
-      | email@domain.com | some_password |
-    When user enters an invalid login
+  Scenario Outline: Unsuccessful authentication with an invalid login (missing @ sign or a fully domain name and case with an incorrect number of characters)
+    Given user with email is registered in the application "example_email@domain.com"
+    When user enters an invalid "<login>"
       | Joe Smith <email@domain.com> |
       | email.domain.com             |
       | email@domain@domain.com      |
@@ -73,30 +73,11 @@ Feature: Authentication to the application
       | @domain.com                  |
       | #@%^%#$@#$@#.com             |
       | plainaddress                 |
-    And user enters any password
+      | a@                           |
+    And user enters any "<password>"
     And clicks the 'Log in' button
-    Then some relevant validation message should be displayed
-
-  Scenario Outline: Authentication with a valid number of characters in the login field
-    Given user is registered
-      | email@domain.com | some_password |
-    When user enters a valid "<number of characters>" in the login field
-    Then the "<expected outcome>" is 'System should accept'
-    And user is redirected to the page with an account details view
+    Then 'Authentication failed. Login or password are incorrect' message should be displayed
+    Then user can see "<expected_error_message>"
     Examples:
-      | number of characters                                         | expected outcome     |
-      | loginwith-exactly-60-characters@have60characters.thatissixty | system should accept |
-      | user-loginwith59characters@have59characters.thatisfiftynine  | system should accept |
-      | a@b                                                          | system should accept |
-      | a@bc                                                         | system should accept |
-
-  Scenario Outline: Authentication with an invalid number of characters in the login field
-    Given user is registered
-      | email@domain.com | some_password |
-    When user enters an invalid "<number of characters>" in the login field
-    Then the "<expected outcome>" is 'System should not accept'
-    And some relevant validation message should be displayed
-    Examples:
-      | number of characters                                          | expected outcome         |
-      | loginlonger-than-60-characters@have61characters.morethansixty | system should not accept |
-      | a@                                                            | system should not accept |
+      | login                                                         | password      | expected_error_message                                                  |
+      | loginlonger-than-60-characters@have61characters.morethansixty | some_password | Invalid login. Valid login should have email format up to 60 characters |

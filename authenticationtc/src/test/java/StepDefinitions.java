@@ -5,8 +5,8 @@ import gherkin.formatter.model.Examples;
 import gherkin.formatter.model.ScenarioOutline;
 
 public class StepDefinitions {
-    @Given("^user is registered$")
-    public void userIsRegistered(DataTable arg0) throws Throwable {
+    @Given("^user with email is registered in the application \"([^\"]*)\"$")
+    public void userWithEmailIsRegisteredInTheApplication(String arg0) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
 
@@ -35,8 +35,8 @@ public class StepDefinitions {
         // Write code here that turns the phrase above into concrete actions
     }
 
-    @When("^user enters the correct login$")
-    public void userEntersTheCorrectLogin() throws Throwable {
+    @When("^user enters \"([^\"]*)\"$")
+    public void userEnters(String arg0) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
 
@@ -50,18 +50,23 @@ public class StepDefinitions {
         // Write code here that turns the phrase above into concrete actions
     }
 
+    @Then("^'Authentication failed. Login or password are incorrect' message should be displayed$")
+    public void authenticationFailedLoginOrPasswordAreIncorrectMessageShouldBeDisplayed() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
     @When("^user enters no login$")
-    public void userEntersNoLogin(DataTable args) throws Throwable {
+    public void userEntersNoLogin() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
 
     @And("^user enters no password$")
-    public void userEntersNoPassword(DataTable args) throws Throwable {
+    public void userEntersNoPassword() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
 
-    @Then("^'Authentication failed. Login or password are incorrect' message should be displayed$")
-    public void authenticationFailedLoginOrPasswordAreIncorrectMessageShouldBeDisplayed() throws Throwable {
+    @Then("^'Login and password are required' message should be displayed$")
+    public void loginAndPasswordAreRequiredMessageShouldBeDisplayed() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
 
@@ -80,33 +85,18 @@ public class StepDefinitions {
         // Write code here that turns the phrase above into concrete actions
     }
 
-    @When("^user enters an invalid login$")
-    public void userEntersAnInvalidLogin(DataTable args) throws Throwable {
+    @When("^user enters an invalid \"([^\"]*)\"$")
+    public void userEntersAnInvalid(String arg0, DataTable args) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
 
-    @Then("^some relevant validation message should be displayed$")
-    public void someRelevantValidationMessageShouldBeDisplayed() throws Throwable {
+    @And("^user enters any \"([^\"]*)\"$")
+    public void userEntersAny(String arg0) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
 
-    @When("^user enters a valid \"([^\"]*)\" in the login field$")
-    public void userEntersAValidInTheLoginField(String arg0) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
-    @Then("^the \"([^\"]*)\" is 'System should accept'$")
-    public void theIsSystemShouldAccept(String arg0) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
-    @When("^user enters an invalid \"([^\"]*)\" in the login field$")
-    public void userEntersAnInvalidInTheLoginField(String arg0) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
-    @Then("^the \"([^\"]*)\" is 'System should not accept'$")
-    public void theIsSystemShouldNotAccept(String arg0) throws Throwable {
+    @Then("^user can see \"([^\"]*)\"$")
+    public void userCanSee(String arg0) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
 
