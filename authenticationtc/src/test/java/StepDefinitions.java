@@ -20,8 +20,8 @@ public class StepDefinitions {
         // Write code here that turns the phrase above into concrete actions
     }
 
-    @When("^user enters valid credentials$")
-    public void userEntersValidCredentials(DataTable args) throws Throwable {
+    @When("^user enters valid \"([^\"]*)\"$")
+    public void userEntersValid(String arg0) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
 
@@ -32,6 +32,11 @@ public class StepDefinitions {
 
     @Then("^user is redirected to the page with an account details view$")
     public void userIsRedirectedToThePageWithAnAccountDetailsView() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @And("^user can see the account details such as name, surname, email address and mailing address$")
+    public void userCanSeeTheAccountDetailsSuchAsNameSurnameEmailAddressAndMailingAddress() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }
 

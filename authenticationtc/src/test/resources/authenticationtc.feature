@@ -8,26 +8,18 @@ Feature: Authentication to the application
     Given user is on the login page
     And user is not authenticated
 
-  Scenario: Successful authentication with valid credentials in both of authentication fields
+  Scenario Outline: Successful authentication with valid credentials in both of authentication fields
     Given user with email is registered in the application "example_email@domain.com"
-    When user enters valid credentials
-      | loginwith-exactly-60-characters@have60characters.thatissixty | password            |
-      | user-loginwith59characters@have59characters.thatisfiftynine  | example_password    |
-      | firstname.lastname@domain.com                                | some_other_password |
-      | email@domain.com                                             | some_password       |
-      | email@subdomain.domain.com                                   | password            |
-      | firstname+lastname@domain.com                                | some_password       |
-      | email@123.123.123.123                                        | 123$_password       |
-      | "email"@domain.com                                           | passwordXYZ         |
-      | 1234567890@domain.com                                        | _password?123       |
-      | email@domain-one.com                                         | %password0.AWSD-key |
-      | _______@domain.com                                           | password+#1         |
-      | email@domain.name                                            | xyz_password        |
-      | email@domain.co.jp                                           | pretty_password     |
-      | firstname-lastname@domain.com                                | ugly_password       |
-      | a@b.pl                                                       | example_password    |
+    When user enters valid "<login>"
+    And user enters valid "<password>"
     And clicks the 'Log In' button
     Then user is redirected to the page with an account details view
+    And user can see the account details such as name, surname, email address and mailing address
+    Examples:
+      | login                                                        | password         |
+      | loginwith-exactly-60-characters@have60characters.thatissixty | example_password |
+      | user-loginwith59characters@have59characters.thatisfiftynine  | pasSword.123     |
+      | firstname.lastname@domain.com                                | xyz_password     |
 
   Scenario Outline: Unsuccessful authentication with valid login or none login and invalid password or none password
     Given user with email is registered in the application "example_email@domain.com"
