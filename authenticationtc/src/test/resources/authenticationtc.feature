@@ -14,7 +14,7 @@ Feature: Authentication to the application
     And user enters valid "<password>"
     And clicks the 'Log In' button
     Then user is redirected to the page with an account details view
-    And user can see the account details such as name, surname, email address and mailing address
+    Then user can see the correct data such as name, surname, email address and mailing address
     Examples:
       | login                                                        | password         |
       | loginwith-exactly-60-characters@have60characters.thatissixty | example_password |
