@@ -5,58 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>intive.search</groupId>
     <artifactId>intive_search</artifactId>
-    <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <properties>
         <seleniumVersion>3.8.1</seleniumVersion>
         <junitVersion>4.12</junitVersion>
-        <mavenShadePluginVersion>3.1.0</mavenShadePluginVersion>
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
-        <starterClass>StartSearching</starterClass>
     </properties>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>${mavenShadePluginVersion}</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <manifestEntries>
-                                        <Main-Class>${starterClass}</Main-Class>
-                                    </manifestEntries>
-                                </transformer>
-                            </transformers>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
     <dependencies>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-chrome-driver</artifactId>
-            <version>${seleniumVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-firefox-driver</artifactId>
-            <version>${seleniumVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-server</artifactId>
+            <artifactId>selenium-java</artifactId>
             <version>${seleniumVersion}</version>
         </dependency>
         <dependency>
