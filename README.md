@@ -1,4 +1,4 @@
-Task 2 - sample project demonstrating how to test Google search UI  with Selenium WebDriver and Maven
+Task 2 - sample project demonstrating how to test Google search UI with Selenium WebDriver and Maven
 
 
 
@@ -19,7 +19,7 @@ You have to set up the environment variables path for geckodriver.exe and chrome
 5. Copy path where -driver.exe are installed
 6. On an 'Environment variables' window click 'New' under 'System variables' and set path (if path already exists, then click 'Edit')
 
-It's possible to put a location of -driver.exe files manually:
+It's possible to put a location of -driver.exe files manually, e.g.:
 
 ```java
 System.setProperty("webdriver.gecko.driver", "C:\\bin\\geckodriver.exe");
@@ -28,15 +28,13 @@ System.setProperty("webdriver.chrome.driver", "C:\\bin\\chromedriver.exe");
 
 ## Dependencies and Properties
 
-| name                    | version                                  |
-| ----------------------- | ---------------------------------------- |
-| selenium-chrome-driver  | [3.8.1](https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver/3.8.1) |
-| selenium-firefox-driver | [3.8.1](https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver/3.8.1) |
-| selenium-server         | [3.8.1](hhttps://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server/3.8.1) |
-| junit                   | [4.12](https://mvnrepository.com/artifact/junit/junit/4.12) |
-| maven-shade-plugin      | [3.1.0](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin/3.1.0) |
-| maven.compiler.source*  | 1.6                                      |
-| maven.compiler.target*  | 1.6                                      |
+| name                   | version                                  |
+| :--------------------- | :--------------------------------------- |
+| selenium-java          | [3.8.1](https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/3.8.1) |
+| junit                  | [4.12](https://mvnrepository.com/artifact/junit/junit/4.12) |
+| log4j                  | [1.2.17](https://mvnrepository.com/artifact/log4j/log4j/1.2.17) |
+| maven.compiler.source* | 1.8                                      |
+| maven.compiler.target* | 1.8                                      |
 
 If you see a warning message produced by the Java compiler:
 
@@ -47,16 +45,15 @@ Add the above properties*. It appears when you use a newer version of the JDK to
 ## Running test from command console
 
 1. Go to the project main directory
-2. Run buildAndRun.sh
+2. Run Run.sh
 3. Now your test should start running
 
 
 
-#### buildAndRun.sh file
+#### Run.sh file
 
 ```
-mvn clean package
-java -jar ./target/intive_search-1.0-SNAPSHOT.jar
+mvn test
 ```
 
 ## Author

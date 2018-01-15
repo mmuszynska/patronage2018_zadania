@@ -2,12 +2,12 @@ package com.intive.patronage;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import tests.ChromeTest;
-import tests.FirefoxTest;
+import tests.ChromeSearch;
+import tests.FirefoxSearch;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ChromeTest.class,
-        FirefoxTest.class
+@Suite.SuiteClasses({ChromeSearch.class,
+        FirefoxSearch.class
 })
 
 public class TestRunner {
