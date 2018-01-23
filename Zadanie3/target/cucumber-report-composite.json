@@ -1,0 +1,139 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "line": 8,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 9,
+            "name": "user is not authenticated",
+            "match": {},
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 10,
+            "name": "user is on the main page",
+            "match": {},
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "line": 23,
+        "name": "Successful authentication with valid credentials",
+        "description": "",
+        "id": "authentication-to-the-application-and-possibility-to-buy-sth-from-the-internet-shop;successful-authentication-with-valid-credentials;;2",
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 13,
+            "name": "user is registered in the application",
+            "match": {},
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 14,
+            "name": "user clicks \u0027Sign in\u0027 button",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 15,
+            "name": "user enters valid \"firstname.lastname@domain.com\"",
+            "match": {},
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 16,
+            "name": "user enters valid \"xyz_password\"",
+            "match": {},
+            "matchedColumns": [
+              1
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 17,
+            "name": "submit form with the \u0027Sign in\u0027 button",
+            "match": {},
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 18,
+            "name": "user is redirected to \u0027My account page\u0027",
+            "match": {},
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 19,
+            "name": "user clicks \u0027My personal information\u0027",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 20,
+            "name": "user can see the correct data such as first name, last name, email address and date of birth",
+            "match": {},
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@loginForm"
+          }
+        ]
+      }
+    ],
+    "name": "Authentication to the application and possibility to buy sth from the Internet shop",
+    "description": "Authentication form for a regular user\r\nAuthenticated users can see the personal information such as first name, last name, email address and date of birth\r\nOnly registered users can authenticate to the application\r\nAuthenticated users can buy sth from the Internet shop using a bank wire or a check",
+    "id": "authentication-to-the-application-and-possibility-to-buy-sth-from-the-internet-shop",
+    "keyword": "Feature",
+    "uri": "src/test/resources/automationPractice.feature",
+    "tags": [
+      {
+        "line": 1,
+        "name": "@loginForm"
+      }
+    ]
+  }
+]
