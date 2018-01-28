@@ -1,7 +1,5 @@
-Task 3 - sample test framework (Java) for a demo e-commerce website: http://automationpractice.com. - built with Cucumber, Selenium WebDriver and Maven
-Checked functionalities:
-1. Authentication to the application (positive and negative flow)
-2. Possibility of making a purchase on the website (only positive flow)
+Task 2 - sample project demonstrating how to test Google search UI with Selenium WebDriver and Maven
+
 
 
 ## Prerequisites
@@ -35,8 +33,6 @@ System.setProperty("webdriver.chrome.driver", "C:\\bin\\chromedriver.exe");
 | selenium-java          | [3.8.1](https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/3.8.1) |
 | junit                  | [4.12](https://mvnrepository.com/artifact/junit/junit/4.12) |
 | log4j                  | [1.2.17](https://mvnrepository.com/artifact/log4j/log4j/1.2.17) |
-| cucumber-java | [1.2.5](https://mvnrepository.com/artifact/info.cukes/cucumber-java/1.2.5)
-| cucumber-junit | [1.2.5](https://mvnrepository.com/artifact/info.cukes/cucumber-junit/1.2.5)|
 | maven.compiler.source* | 1.8                                      |
 | maven.compiler.target* | 1.8                                      |
 
