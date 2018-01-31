@@ -1,28 +1,27 @@
-package tests;
+package tests.steps;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import pages.MyAccountPage;
-import pages.SignInPage;
+import tests.pages.*;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static tests.Hooks.driver;
-import static tests.StartStepDefs.logger;
+import static tests.steps.StartStepDefs.logger;
 
 public class SignInStepDefs {
 
     SignInPage signInPage = new SignInPage();
     MyAccountPage myAccountPage = new MyAccountPage();
+    StartPage startPage = new StartPage();
     String mainPageUrl = "http://automationpractice.com/index.php";
     String myAccountUrl = "http://automationpractice.com/index.php?controller=my-account";
 
     @Given("^user is registered in the application with email \"([^\"]*)\"$")
     public void userIsRegisteredInTheApplicationWithEmail(String email) {
-        assertEquals(true, driver.getCurrentUrl().equals(mainPageUrl));
+        String startPageUrl = startPage.goToStartPage();
+        assertTrue(startPageUrl.equals(mainPageUrl));
     }
 
     @When("^user clicks Sign in button$")
@@ -57,13 +56,12 @@ public class SignInStepDefs {
 
     @Then("^user is redirected to My account page$")
     public void userIsRedirectedToPage() {
-        assertEquals(true, driver.getCurrentUrl().equals(myAccountUrl));
+        assertTrue(myAccountPage.getMyAccountPageUrl().equals(myAccountUrl));
     }
 
     @Then("^user can see relevant validation message: \"([^\"]*)\"$")
     public void userCanSeeRelevantValidationMessage(String expectedErrorMessage) {
         String errorMessage = signInPage.getErrorMessage();
-        System.out.println(errorMessage);
         assertTrue(errorMessage.contains(expectedErrorMessage));
         logger.info("TEST END - User is not authenticated");
     }

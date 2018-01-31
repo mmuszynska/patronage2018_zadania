@@ -1,4 +1,4 @@
-package pages;
+package tests.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import static tests.Hooks.driver;
 
 public class AddProductPage {
+
+    String shopMessage = "Product successfully added to your shopping cart";
 
     @FindBy(how = How.CLASS_NAME, using = "icon-th-list")
     public WebElement listView;
@@ -25,5 +27,9 @@ public class AddProductPage {
 
     public void buyProduct() {
         addButton.click();
+    }
+
+    public boolean pageContainsShopMessage(){
+        return driver.getPageSource().contains(shopMessage);
     }
 }

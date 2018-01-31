@@ -1,4 +1,4 @@
-package pages;
+package tests.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -40,5 +40,9 @@ public class MyAccountPage {
 
     public String getEmailFieldText() {
         return email.getAttribute("value");
+    }
+
+    public String getMyAccountPageUrl(){
+        return driver.getCurrentUrl();
     }
 }

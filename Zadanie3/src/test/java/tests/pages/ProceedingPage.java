@@ -1,11 +1,13 @@
-package pages;
+package tests.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static tests.Hooks.driver;
+import static tests.Hooks.wait;
 
 public class ProceedingPage {
 
@@ -40,6 +42,10 @@ public class ProceedingPage {
         PageFactory.initElements(driver, this);
     }
 
+    public void waitForFirstProceedBtn() {
+        wait.until(ExpectedConditions.elementToBeClickable(firstProceed)).click();
+    }
+
     public void getSummaryProceed() {
         summaryProceed.click();
     }
@@ -68,5 +74,9 @@ public class ProceedingPage {
 
     public void getConfirm() {
         confirmButton.click();
+    }
+
+    public void waitForBackToOrdersBtn() {
+        wait.until(ExpectedConditions.elementToBeClickable(backToOrdersButton)).click();
     }
 }

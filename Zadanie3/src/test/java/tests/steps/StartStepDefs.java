@@ -1,12 +1,11 @@
-package tests;
+package tests.steps;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import org.apache.log4j.Logger;
-import pages.StartPage;
+import tests.pages.*;
 
-import static org.junit.Assert.assertEquals;
-import static tests.Hooks.driver;
+import static org.junit.Assert.assertTrue;
 
 public class StartStepDefs {
 
@@ -18,12 +17,12 @@ public class StartStepDefs {
     @Given("^user is on the main page$")
     public void userIsOnTheMainPage() {
         logger.info("TEST START - User is on the main page");
-        driver.get(mainPageUrl);
-        assertEquals(true, driver.getCurrentUrl().equals(mainPageUrl));
+        String startPageUrl = startPage.goToStartPage();
+        assertTrue(startPageUrl.equals(mainPageUrl));
     }
 
     @And("^user is not authenticated$")
     public void userIsNotAuthenticated() {
-        assertEquals("Sign in", startPage.noUserLoggedIn.getText());
+        assertTrue(startPage.isSignInBtnVisible());
     }
 }

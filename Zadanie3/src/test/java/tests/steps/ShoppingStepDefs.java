@@ -1,17 +1,14 @@
-package tests;
+package tests.steps;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.*;
+import tests.pages.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static tests.Hooks.driver;
-import static tests.Hooks.wait;
-import static tests.StartStepDefs.logger;
+import static tests.steps.StartStepDefs.logger;
 
 public class ShoppingStepDefs {
 
@@ -21,7 +18,6 @@ public class ShoppingStepDefs {
     ProceedingPage proceedingPage = new ProceedingPage();
     OrderHistoryPage orderHistoryPage = new OrderHistoryPage();
     String historyUrl = "http://automationpractice.com/index.php?controller=history";
-    String shopMessage = "Product successfully added to your shopping cart";
     String payByBankWire = "pay by bank wire";
     String payByCheck = "pay by check";
 
@@ -42,12 +38,12 @@ public class ShoppingStepDefs {
     public void userAddsProductToCart() {
         addProductPage.getListView();
         addProductPage.buyProduct();
-        assertEquals(true, driver.getPageSource().contains(shopMessage));
+        assertTrue(addProductPage.pageContainsShopMessage());
     }
 
     @And("^user proceeds all steps of ordering$")
     public void userProceedsAllStepsOfOrdering() {
-        wait.until(ExpectedConditions.elementToBeClickable(proceedingPage.firstProceed)).click();
+        proceedingPage.waitForFirstProceedBtn();
         proceedingPage.getSummaryProceed();
         proceedingPage.getAddressProceed();
         proceedingPage.getTosCheck();
@@ -70,17 +66,15 @@ public class ShoppingStepDefs {
 
     @Then("^user can see \"([^\"]*)\" message$")
     public void userCanSeeMessage(String niceMessage) {
-        System.out.println("*****" + niceMessage + "*****");
-        assertTrue(!niceMessage.isEmpty());
+        assertFalse(niceMessage.isEmpty());
     }
 
     @And("^user is able to see details of his orders in Order history page$")
     public void userIsAbleToSeeDetailsOfHisOrdersInOrderHistoryPage() {
-        wait.until(ExpectedConditions.elementToBeClickable(proceedingPage.backToOrdersButton)).click();
-        assertEquals(true, driver.getCurrentUrl().equals(historyUrl));
-        wait.until(ExpectedConditions.elementToBeClickable(orderHistoryPage.orderDetails)).click();
-        wait.until(ExpectedConditions.visibilityOf(orderHistoryPage.ordersStatus));
-        assertTrue(orderHistoryPage.ordersStatus.isDisplayed());
+        proceedingPage.waitForBackToOrdersBtn();
+        assertTrue(orderHistoryPage.getOrderPageUrl().equals(historyUrl));
+        orderHistoryPage.clickOrderDetailsBtn();
+        assertTrue(orderHistoryPage.isOrdersStatusVisible());
         logger.info("TEST END - Successful shopping process");
     }
 }
